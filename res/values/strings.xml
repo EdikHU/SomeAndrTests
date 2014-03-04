@@ -4,5 +4,6 @@
     <string name="app_name">PricesComparator</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">HERE3!</string>
+    <string name="tb1">TB1</string>
 
 </resources>
