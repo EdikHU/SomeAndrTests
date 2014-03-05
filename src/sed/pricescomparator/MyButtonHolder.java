@@ -1,6 +1,11 @@
 package sed.pricescomparator;
 
+/*
+ * 				MyButtonHolder butt = MyButtonHolder.getInstance(context);
 
+				layout.addView(butt.getRoot());
+
+ * */
 import java.util.Date;
 
 import android.content.Context;

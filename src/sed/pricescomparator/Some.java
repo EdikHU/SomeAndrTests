@@ -1,16 +1,13 @@
 package sed.pricescomparator;
 
-import java.util.Date;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.widget.LinearLayout;
 
-import android.widget.Button;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-public class Some extends RelativeLayout  {
+public class Some extends LinearLayout  {
 
 	//private LinearLayout ll;
 	private String id = ""+System.currentTimeMillis();//(""+new Date()).split("\\s")[3];
@@ -24,7 +21,7 @@ public class Some extends RelativeLayout  {
 //		tv.setText(">> "+id);
 //		this.addView(new Button(getContext()));
 		
-		LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.some, this);
 		
 	}

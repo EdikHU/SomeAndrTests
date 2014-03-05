@@ -3,7 +3,6 @@ package sed.pricescomparator;
 import java.util.Date;
 
 import android.os.Bundle;
-
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -25,44 +24,36 @@ public class MainActivity extends Activity {
 		layout = (LinearLayout) findViewById(R.id.another);
 
 		context = this;
-		// View butt = getLayoutInflater().inflate(R.layout.my_button, layout,false);
-		// View butt = findViewById(R.id.my_button);
 		
 		Button bb = (Button)findViewById(R.id.butt);
 		bb.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				MyButtonHolder butt = MyButtonHolder.getInstance(context);
-
-				layout.addView(butt.getRoot());
-
-				
+				View ll = Some2.getInstance(context);
+				layout.addView(ll);
+				System.out.println("button here");
 			}
 		});
 		
 		
 		ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar1);
-		
 		pb.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				((TextView)findViewById(R.id.mtv)).setText("["+new Date()+"]");
-				//((Button)findViewById(R.id.mb_butt)).setText("["+new Date()+"]");
-				
-				layout.addView(new Some(getApplicationContext()));
-				System.out.println("here");
+				//Some2.setTV( (""+new Date()).split("\\s")[3]  );
+				System.out.println("pb here "+v.getId()+" "+layout.getId());
+				for (int i=0;i< layout.getChildCount();i++){
+					System.out.println("--> "+i);
+					if (Some2.class.equals(layout.getChildAt(i).getTag() ) ){
+						((TextView)layout.getChildAt(i).findViewById(R.id.some_tv)).setText((""+new Date()).split("\\s")[3] );
+						System.out.println("finded");
+					}
+				}
 			}
 		});
 		
-		for (int i=0; i<3; i++){
-			layout.addView(new Some(context));
-			layout.addView(new Button(context));
-			System.out.println("["+i+"]");
-		}
-		layout.addView(new Some(context));
-		layout.addView(new Button(context));
 
 	}
 
