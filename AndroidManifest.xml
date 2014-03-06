@@ -16,7 +16,7 @@
                     android:theme="@android:style/Theme.Black.NoTitleBar"
         >
         <activity
-            android:name="sed.pricescomparator.MainActivity"
+            android:name="sed.pricescomparator.Main3"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
