@@ -13,6 +13,7 @@ import android.widget.ListView;
 public class Main3 extends Activity{
 
 	private ArrayList<Main3Item> al;
+	private M3Adapter adapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +23,9 @@ public class Main3 extends Activity{
 		setContentView(layout);
 		layout.setOrientation(LinearLayout.VERTICAL);
 		
-		Button butt = new Button(this);
-		layout.addView(butt);
-		butt.setOnClickListener(new OnClickListener() {
+		Button btnPrn = new Button(this);
+		layout.addView(btnPrn);
+		btnPrn.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
@@ -32,6 +33,18 @@ public class Main3 extends Activity{
 			}
 		});
 		
+		Button butt = new Button(this);
+		butt.setText("add");
+		layout.addView(butt);
+		butt.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				al.add(new Main3Item("mychacha",true));
+				adapter.notifyDataSetChanged();
+			}
+		});
+
 		
 		ListView listView = new ListView(this);
 		layout.addView(listView);
@@ -51,7 +64,7 @@ public class Main3 extends Activity{
 		al.add(new Main3Item("tres",false));
 		al.add(new Main3Item("direcho",false));
 		
-		M3Adapter adapter = new M3Adapter(layout.getContext(),al);
+		adapter = new M3Adapter(layout.getContext(),al);
 		listView.setAdapter(adapter);
 		
 		

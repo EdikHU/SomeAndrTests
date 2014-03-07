@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.content.Context;
 import android.view.View;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
@@ -16,8 +17,10 @@ public class M3Adapter extends BaseAdapter{
 
 	private Context context;
 	private ArrayList<Main3Item> al;
+	private M3Adapter inst;
 
 	public M3Adapter(Context context, ArrayList<Main3Item> al) {
+		inst = this;
 		this.context = context;
 		this.al = al;
 	}
@@ -42,6 +45,16 @@ public class M3Adapter extends BaseAdapter{
 		Main3ItemHolder view = (Main3ItemHolder)changingView;
 		if (view == null){
 			view = new Main3ItemHolder(context);
+			view.setOnLongClickListener(new OnLongClickListener() {
+				@Override
+				public boolean onLongClick(View v) {
+					int ss = (Integer)(((CheckBox)v.findViewById(R.id.m3_item_checkBox)).getTag());
+					al.remove(ss);
+					inst.notifyDataSetChanged();
+					System.out.println("rem longClick --> "+ ss);
+					return false;
+				}
+			});
 		} 
 		
 		((CheckBox)view.findViewById(R.id.m3_item_checkBox)).setOnCheckedChangeListener(null);
