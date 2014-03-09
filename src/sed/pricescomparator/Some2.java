@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+//git test
+
 public class Some2 {
 
 	
