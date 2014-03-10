@@ -29,7 +29,7 @@ public class Main4Activity2 extends Activity{
 		setContentView(layout);
 		
 		TextView tv2 = new TextView(this);
-		tv2.setText("ch M4A2 "+new Date());
+		tv2.setText(" ch M4A2 "+new Date());
 		
 		layout.addView(tv2);
 		
