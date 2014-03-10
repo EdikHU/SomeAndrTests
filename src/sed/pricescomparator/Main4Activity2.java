@@ -34,7 +34,7 @@ public class Main4Activity2 extends Activity{
 		layout.addView(tv2);
 		
 		Button butt = new Button(this);
-		butt.setText("back");
+		butt.setText("toGo");
 		layout.addView(butt);
 		butt.setOnClickListener(new OnClickListener() {
 			
