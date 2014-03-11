@@ -5,19 +5,19 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="14"
+        android:minSdkVersion="15"
         android:targetSdkVersion="15" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-       
-                    android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
+        android:theme="@style/AppTheme"
         >
         
         <activity
-            android:name="sed.pricescomparator.Main3"
+            android:name="sed.pricescomparator.Main6"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -50,6 +50,20 @@
             android:label="The Fantom">
             <intent-filter>
                 <action android:name="sed.pricescomparator.M4ACT2"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        
+        
+        <activity 
+            android:name="Main5Act2" 
+            android:label="M5Act2">
+            
+        </activity>
+        <activity android:label="FakePhone" android:name="Main5Act3FakeTel">
+            <intent-filter>
+                <action android:name="android.intent.action.DIAL"/>
+                <data android:scheme="tel"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
