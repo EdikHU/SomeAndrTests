@@ -17,7 +17,7 @@
         android:theme="@style/AppTheme" >
         
         <activity
-            android:name="sed.pricescomparator.Main6"
+            android:name="sed.pricescomparator.Main7"
             android:configChanges="orientation|screenSize"
             android:label="@string/app_name" >
             <intent-filter>
