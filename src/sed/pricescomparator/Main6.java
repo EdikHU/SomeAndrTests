@@ -3,6 +3,7 @@ package sed.pricescomparator;
 import java.io.Serializable;
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
@@ -25,15 +26,15 @@ public class Main6 extends Activity {
 		la.setOrientation(LinearLayout.VERTICAL);
 		setContentView(la);
 
-		Button btn = new Button(this);
-		btn.setText("bye");
-		btn.setOnClickListener(new OnClickListener() {
+		Button btnBye = new Button(this);
+		btnBye.setText("bye");
+		btnBye.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				inst.finish();
 			}
 		});
-		la.addView(btn);
+		la.addView(btnBye);
 
 		System.out.println("HERE LOAD check for restoring");
 		if (state != null) {
@@ -63,21 +64,60 @@ public class Main6 extends Activity {
 			}
 		});
 		la.addView(tvs2);
+		
+		Button btnOrientUnspec = new Button(this);
+		btnOrientUnspec.setText("btnOrientUnspec");
+		btnOrientUnspec.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Configuration c = inst.getResources().getConfiguration();
+				System.out.println("CHAN KEY  ["+c.orientation+"] ["+inst.getRequestedOrientation()+"] ["+c+"]");
+				inst.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+			}
+		});
+		la.addView(btnOrientUnspec);
+
+		
+		Button btnOrPort = new Button(this);
+		btnOrPort.setText("or_port");
+		btnOrPort.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				inst.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+				Configuration c = inst.getResources().getConfiguration();
+				System.out.println("CHAN -> PORT ["+c.orientation+"] ["+inst.getRequestedOrientation()+"]");
+			}
+		});
+		la.addView(btnOrPort);
+
+		Button btn = new Button(this);
+		btn.setText("or_land");
+		btn.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				inst.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+				Configuration c = inst.getResources().getConfiguration();
+				System.out.println("CHAN -> LAND ["+c.orientation+"] ["+inst.getRequestedOrientation()+"]");
+			}
+		});
+		la.addView(btn);
+
+		
 	}
 
 
-	@Override
-	protected void onSaveInstanceState(Bundle ost) { 
-		super.onSaveInstanceState(ost);
-		System.out.println("HERE SAVE onSaveInstanceState");
-		ost.putSerializable("s1", s1);
-		ost.putSerializable("s2", s2);
-	}
+//	@Override
+//	protected void onSaveInstanceState(Bundle ost) { 
+//		super.onSaveInstanceState(ost);
+//		System.out.println("HERE SAVE onSaveInstanceState");
+//		ost.putSerializable("s1", s1);
+//		ost.putSerializable("s2", s2);
+//	}
 
 	@Override
-	public void onConfigurationChanged(Configuration newConfig) {
-		System.out.println("HERE !!! CALL onConfigurationChanged");
-		super.onConfigurationChanged(newConfig);
+	public void onConfigurationChanged(Configuration configuration) {
+		System.out.println("HERE !!! CALL onConfigurationChanged ["+configuration+"] ");
+		super.onConfigurationChanged(configuration);
 	}
 	
 
