@@ -7,68 +7,66 @@
     <uses-sdk
         android:minSdkVersion="15"
         android:targetSdkVersion="15" />
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-        >
+        android:theme="@style/AppTheme" >
         
         <activity
             android:name="sed.pricescomparator.Main6"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         
-        
-        
-        <activity 
-            android:name="Main4Activity2" 
-            android:theme="@android:style/Theme.Dialog" android:label="The Real">
+        <activity
+            android:name="Main4Activity2"
+            android:label="The Real"
+            android:theme="@android:style/Theme.Dialog" >
             <intent-filter>
-                <action android:name="sed.pricescomparator.M4ACT2"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="sed.pricescomparator.M4ACT2" />
+
+                <category android:name="android.intent.category.DEFAULT" />
 
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-                
-                </intent-filter>
-        </activity>
 
-        
-        
-        
-        
-        <activity 
-            android:name="Main4Activity2Fantom" 
-            android:theme="@android:style/Theme.Dialog" 
-            android:label="The Fantom">
-            <intent-filter>
-                <action android:name="sed.pricescomparator.M4ACT2"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-        
-        <activity 
-            android:name="Main5Act2" 
-            android:label="M5Act2">
-            
-        </activity>
-        <activity android:label="FakePhone" android:name="Main5Act3FakeTel">
+        <activity
+            android:name="Main4Activity2Fantom"
+            android:label="The Fantom"
+            android:theme="@android:style/Theme.Dialog" >
             <intent-filter>
-                <action android:name="android.intent.action.DIAL"/>
-                <data android:scheme="tel"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="sed.pricescomparator.M4ACT2" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        
-        
+        <activity
+            android:name="Main5Act2"
+            android:label="M5Act2" >
+        </activity>
+        <activity
+            android:name="Main5Act3FakeTel"
+            android:label="FakePhone" >
+            <intent-filter>
+                <action android:name="android.intent.action.DIAL" />
+
+                <data android:scheme="tel" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
