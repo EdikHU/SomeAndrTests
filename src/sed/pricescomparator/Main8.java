@@ -1,10 +1,10 @@
 package sed.pricescomparator;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,14 +18,37 @@ import android.widget.Toast;
 //	<!--android:configChanges="orientation|screenSize"--> removed from manifest
 //
 
-public class Main8 extends Activity {
+public class Main8 extends Activity implements Serializable{
 
+	private static final long serialVersionUID = 9050983383887655662L;
 	private static final String LOG_TAG = "LOG_TAG";
-	private static Button btnStart;
+	protected Button btnStart;
 	private Button btnShow;
-	protected Context context;
 	private Button btnStop;
+	private Main8 context;
+	private String id;
 	private static ModAsyncTask aTask;
+
+	
+	
+	public Main8() {
+		super();
+		id = (""+new Date()).split("\\s")[3];
+		System.out.println("HERE Main8 constr superclass ["+id+"]");
+	}
+
+	
+	
+	public Main8(Button btnStart, Button btnShow, Button btnStop, Main8 context) {
+		super();
+		this.btnStart = btnStart;
+		this.btnShow = btnShow;
+		this.btnStop = btnStop;
+		this.context = context;
+		System.out.println("HERE Main8 constr fields");
+	}
+
+
 
 	@Override
 	protected void onCreate(Bundle savedState) {
@@ -47,7 +70,7 @@ public class Main8 extends Activity {
 				if (aTask == null
 						|| aTask.getStatus() != AsyncTask.Status.RUNNING) {
 					System.out.println("HERE START init!!!!!");
-					aTask = new ModAsyncTask();
+					aTask = new ModAsyncTask(context);
 				}
 				if (aTask.getStatus() != AsyncTask.Status.RUNNING) {
 					System.out.println("HERE START execute!!!!!");
@@ -79,27 +102,55 @@ public class Main8 extends Activity {
 			}
 		});
 
-		aTask = (savedState == null ? null : (ModAsyncTask) savedState
-				.get("aTask"));
 
+//		if (savedState != null){
+//			ModAsyncTask ssAtask = (ModAsyncTask) savedState.get("aTask");
+//			if (ssAtask != null){
+//				aTask = ssAtask;
+//				aTask.activity = this;
+//			}
+//		}
+		
+		
+		if (savedState != null){
+		@SuppressWarnings("deprecation")
+		ModAsyncTask ssAtask = (ModAsyncTask) getLastNonConfigurationInstance();
+		if (ssAtask != null){
+			aTask = ssAtask;
+			aTask.activity = this;
+		}
 	}
+		
+	}
+
+//	@Override
+//	protected void onSaveInstanceState(Bundle outState) {
+//		super.onSaveInstanceState(outState);
+//		System.out.println("HERE onSaveInstanceState [" + isFinishing() + "]");
+//		if (aTask != null)
+//			outState.putSerializable("aTask", aTask);
+//	}
 
 	@Override
-	protected void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
-		if (aTask != null)
-			outState.putSerializable("aTask", aTask);
+	@Deprecated
+	public Object onRetainNonConfigurationInstance() {
+		return aTask;
 	}
-
+	
+	
 	@Override
 	protected void onDestroy() {
 		System.out.println("HERE onDestroy [" + isFinishing() + "]");
 		super.onDestroy();
+		if (aTask!=null){
+			aTask.activity=null;
+		}
 		if (isFinishing() && aTask != null) {
 			aTask.cancel(true);
 			aTask = null;
 		}
 	}
+
 
 	private static class ModAsyncTask extends AsyncTask<Void, Void, Void>
 			implements Serializable {
@@ -108,6 +159,12 @@ public class Main8 extends Activity {
 
 		int count;
 
+		private Main8 activity;
+
+		public ModAsyncTask(Main8 main8) {
+			activity = main8;
+		}
+
 		@Override
 		protected Void doInBackground(Void... params) {
 			try {
@@ -115,8 +172,8 @@ public class Main8 extends Activity {
 
 					if (isCancelled())
 						break;
-
-					Log.d(LOG_TAG, "HERE doInBackground [" + count + "]");
+					if (activity!=null)
+					Log.d(LOG_TAG, "HERE doInBackground [" + count + "] ["+activity.hashCode()+"]["+activity.id+"]");
 
 					publishProgress();
 					TimeUnit.SECONDS.sleep(1);
@@ -131,13 +188,15 @@ public class Main8 extends Activity {
 		@Override
 		protected void onProgressUpdate(Void... values) {
 			super.onProgressUpdate(values);
-			Main8.btnStart.setText("[" + (count++) + "]");
+			if (activity!=null)
+			activity.btnStart.setText("[" + (count++) + "]");
 		}
 
 		@Override
 		protected void onCancelled() {
 			super.onCancelled();
-			Main8.btnStart.setText("Start [" + count + "]");
+			if (activity!=null)
+			activity.btnStart.setText("Start [" + count + "]");
 		}
 
 	}
