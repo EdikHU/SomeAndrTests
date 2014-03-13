@@ -2,7 +2,6 @@ package sed.pricescomparator;
 
 import java.io.Serializable;
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
