@@ -105,13 +105,13 @@ public class Main6 extends Activity {
 	}
 
 
-//	@Override
-//	protected void onSaveInstanceState(Bundle ost) { 
-//		super.onSaveInstanceState(ost);
-//		System.out.println("HERE SAVE onSaveInstanceState");
-//		ost.putSerializable("s1", s1);
-//		ost.putSerializable("s2", s2);
-//	}
+	@Override
+	protected void onSaveInstanceState(Bundle ost) { 
+		super.onSaveInstanceState(ost);
+		System.out.println("HERE SAVE onSaveInstanceState");
+		ost.putSerializable("s1", s1);
+		ost.putSerializable("s2", s2);
+	}
 
 	@Override
 	public void onConfigurationChanged(Configuration configuration) {

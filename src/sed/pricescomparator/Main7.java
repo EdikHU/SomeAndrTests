@@ -3,16 +3,19 @@ package sed.pricescomparator;
 import java.util.concurrent.TimeUnit;
 
 import android.app.Activity;
+import android.content.Context;
 //import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.LayoutInflater;
 //import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 //import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,7 +26,7 @@ public class Main7 extends Activity{
 	private static Handler h;
 	private static TextView tv;
 	private static Button btnStart;
-	private static Main7PB pb;
+	private static ProgressBar pb;
 	private Main7 context;
 
 	@Override
@@ -47,8 +50,8 @@ public class Main7 extends Activity{
 		la.addView(btnTest);
 		
 		
-		pb = new Main7PB(this);
-		//pb = (ProgressBar)( (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE)   ).inflate(R.layout.m7_pb, null);
+//		pb = new Main7PB(this);
+		pb = (ProgressBar)( (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE)   ).inflate(R.layout.m7_pb, null);
 		//pb = new ProgressBar(this);
 		pb.setMax(10);
 		la.addView(pb);
