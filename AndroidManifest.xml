@@ -40,6 +40,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
         <activity
             android:name="Main4Activity2Fantom"
             android:label="The Fantom"
@@ -50,10 +51,12 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        
         <activity
             android:name="Main5Act2"
             android:label="M5Act2" >
         </activity>
+        
         <activity
             android:name="Main5Act3FakeTel"
             android:label="FakePhone" >
@@ -65,6 +68,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        
+        <service android:name="Main9Service"></service>
+        
     </application>
 
 </manifest>
