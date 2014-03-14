@@ -3,7 +3,8 @@ package sed.pricescomparator;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
-
+import android.app.PendingIntent;
+import android.app.PendingIntent.CanceledException;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
@@ -18,6 +19,8 @@ public class Main9Service extends Service{
 	private int startId ;
 
 	protected boolean needRunService = true;
+
+	private PendingIntent pendinIntent;
 	
 	private static final String LOG_TAG = "LOG_TAG";
 
@@ -32,9 +35,18 @@ public class Main9Service extends Service{
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		this.startId = startId;
 		Log.d(LOG_TAG, "onStartCommand ["+startId+"]["+servId+"] BEGIN");
-		someHere();
-		//Log.d(LOG_TAG, "onStartCommand ["+startId+"]["+servId+"] END");
+		pendinIntent = intent.getParcelableExtra("777");
 		
+		try {
+			pendinIntent.send(this, 777, new Intent().putExtra("777", 111111)  );
+		} catch (CanceledException e) {
+			e.printStackTrace();
+		}
+		
+		if ("start".equals(intent.getStringExtra("start"))){
+			someHere();
+		}
+
 		//return super.onStartCommand(intent, flags, startId);
 		return START_REDELIVER_INTENT;
 	}
@@ -70,6 +82,13 @@ public class Main9Service extends Service{
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
+					
+					try {
+						pendinIntent.send(Main9Service.this, 777, new Intent().putExtra("777", (int)liveIncrimentor.get())  );
+					} catch (CanceledException e) {
+						e.printStackTrace();
+					}
+					
 					//Log.d(LOG_TAG, "  someHere ["+servId+"]["+id+"] END ["+i+"]");
 				}
 				//stopSelf();
