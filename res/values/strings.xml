@@ -6,5 +6,7 @@
     <string name="hello_world">HERE3!</string>
     <string name="tb1">TB1</string>
     <string name="butt">ThBtn</string>
+    <string name="frag1_text">TODO frag1_text</string>
+    <string name="log">TODO log</string>
 
 </resources>
